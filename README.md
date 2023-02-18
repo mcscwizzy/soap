@@ -24,4 +24,7 @@ Python is not a compiled language. It is not as fast as its compiled counterpart
 # If words are missed...
 There are tons of combinations in subtitles as far as swearing goes and I know I have not got all of them. If you discover a few that I missed you can add them to the profanity.txt file so it will pick them up. Create a new branch, add them, then put in pull request and I'll merge it in. 
 
+# Known bug
+Having some issues with timestamps and audio sync. Working on getting that fixed. 
+
 

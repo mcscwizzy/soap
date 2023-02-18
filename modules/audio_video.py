@@ -109,9 +109,9 @@ def remove_temp_files(videofilepath: str) -> None:
     """
 
     try:
-        # os.remove(f"{no_ext(videofilepath)}.wav")
-        # os.remove(f"{no_ext(videofilepath)}2.wav")
-        # os.remove(f"{no_ext(videofilepath)}2.mp4")
+        os.remove(f"{no_ext(videofilepath)}.wav")
+        os.remove(f"{no_ext(videofilepath)}2.wav")
+        os.remove(f"{no_ext(videofilepath)}2.mp4")
         os.remove(f"{no_ext(videofilepath)}2.srt")
     except:
         pass
