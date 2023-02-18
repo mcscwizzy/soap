@@ -24,7 +24,7 @@ def find_profanity_srt(captions: list) -> list:
     for profanity in profanities:
         for caption in captions:
             if profanity in caption.lower():
-                clean_captions.append(str(caption).replace(profanity, "****"))
+                clean_captions.append(str(caption).replace(profanity, "********"))
 
     if len(clean_captions) == 0:
         clean_captions = captions

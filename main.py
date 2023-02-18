@@ -1,16 +1,17 @@
-from modules.srt import *
-from modules.profanity import *
+from modules.soap import start_soap
+import argparse
 
 
 def main():
-    srt_filepath = "/Users/johnwalker/Downloads/planet-of-the-apes.srt"
-    srt_file = load_srt(filepath=srt_filepath)
-    srt_map = map_srt_file(srt_file=srt_file)
-
-    for srt in srt_map:
-        srt["captions"] = find_profanity_srt(captions=srt["captions"])
-
-    print(srt_map)
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--pathToVideo", help="Path to video e.g. ~/Documents/Video/Video.mp4"
+    )
+    parser.add_argument(
+        "--pathToSrt", help="Path to SRT e.g. ~/Documents/Video/Video.srt"
+    )
+    args = parser.parse_args()
+    start_soap(videofilepath=args.pathToVideo, srtfilepath=args.pathToSrt)
 
 
 if __name__ == "__main__":
