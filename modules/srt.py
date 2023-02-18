@@ -8,7 +8,8 @@ def load_srt(filepath: str) -> list:
         list
     """
 
-    subtitles = open(filepath
+    subtitles = open(
+        filepath,
         mode="r",
         encoding="utf-8-sig",
     )
@@ -16,7 +17,7 @@ def load_srt(filepath: str) -> list:
     return subtitles.read().splitlines()
 
 
-def map_srt_file(srt_raw_data: list) -> list:
+def map_srt_file(srt_file: list) -> list:
     """Maps srt file to a workable list of dictionaries
 
     Args:
@@ -28,7 +29,7 @@ def map_srt_file(srt_raw_data: list) -> list:
     srt_map = []
     srt_captions = {}
 
-    for srt in srt_raw_data:
+    for srt in srt_file:
         if srt == "":
             srt_map.append(srt_captions)
             srt_captions = {}
