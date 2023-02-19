@@ -30,7 +30,7 @@ def start_soap(videofilepath: str, srtfilepath: str):
     add_audio_to_video(videofilepath=videofilepath)
 
     print("Writing new srt file")
-    write_srt_to_file(srt_map=srt_map)
+    write_srt_to_file(srt_map=srt_map, srtfilepath=srtfilepath)
 
     print("Removing temp files")
     remove_temp_files(videofilepath=videofilepath)

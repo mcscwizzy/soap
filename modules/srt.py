@@ -1,3 +1,6 @@
+from modules.audio_video import no_ext
+
+
 def load_srt(filepath: str) -> list:
     """Loads srt file and splits lines into list
 
@@ -93,14 +96,16 @@ def find_profanity_timestamps(srt_file: list) -> list:
     return profanity_timestamps
 
 
-def write_srt_to_file(srt_map: list) -> None:
+def write_srt_to_file(srt_map: list, srtfilepath: str) -> None:
     """Writes new srt file based on the clean srt map
 
     Args:
         srt_map (list)
     """
+    srtfilepath = no_ext(srtfilepath)
+    srtfilepath = f"{srtfilepath}-clean.srt"
     with open(
-        "/Users/johnwalker/Downloads/planet-of-the-apes-clean.srt",
+        f"{srtfilepath}",
         "a",
         encoding="utf-8-sig",
     ) as file:
