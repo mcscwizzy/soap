@@ -82,7 +82,7 @@ def find_profanity_timestamps(srt_file: list) -> list:
         for caption in srt["captions"]:
             if "********" in caption:
                 timestamp_start = str(srt["timestamp"]).split(" --> ")[0]
-                timestamp_end = str(srt["timestamp"]).split(" --> ")[0]
+                timestamp_end = str(srt["timestamp"]).split(" --> ")[1]
                 profanity_timestamps.append(
                     (
                         convert_timestamp_to_seconds(timestamp_start),
