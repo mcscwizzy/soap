@@ -48,7 +48,7 @@ def map_srt_file(srt_file: list) -> list:
     return srt_map
 
 
-def convert_timestamp_to_seconds(timestamp: str) -> int:
+def convert_timestamp_to_seconds(timestamp: str) -> float:
     """Converts timestamp to seconds
 
     Args:
@@ -57,13 +57,15 @@ def convert_timestamp_to_seconds(timestamp: str) -> int:
     Returns:
         int:
     """
-    if int(timestamp.split(":")[0]) == 00:
-        timestamp = int(timestamp.split(":")[1]) * 60
-    else:
-        hour = int(str(timestamp.split(":")[0]).replace("0", "")) * 3600
-        minute = int(timestamp.split(":")[1]) * 60
-        timestamp = hour + minute
-    return timestamp
+    timestamp = timestamp.split(":")
+    hour = timestamp[0].lstrip("0")
+    minute = timestamp[1].lstrip("0")
+    second = str(timestamp[2].lstrip("0"))
+    hour = (int(hour) * 3600) if hour != "" else 0
+    minute = int(minute) * 60
+    second = float(str(second).replace(",", "."))
+    total_seconds = int(hour) + int(minute) + float(second)
+    return float(total_seconds)
 
 
 def find_profanity_timestamps(srt_file: list) -> list:
@@ -79,9 +81,14 @@ def find_profanity_timestamps(srt_file: list) -> list:
     for srt in srt_file:
         for caption in srt["captions"]:
             if "********" in caption:
-                timestamp_start = convert_timestamp_to_seconds(srt["timestamp"])
-                timestamp_end = timestamp_start + 1
-                profanity_timestamps.append((timestamp_start, timestamp_end))
+                timestamp_start = str(srt["timestamp"]).split(" --> ")[0]
+                timestamp_end = str(srt["timestamp"]).split(" --> ")[0]
+                profanity_timestamps.append(
+                    (
+                        convert_timestamp_to_seconds(timestamp_start),
+                        convert_timestamp_to_seconds(timestamp_end),
+                    )
+                )
 
     return profanity_timestamps
 
